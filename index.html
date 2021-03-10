@@ -1,0 +1,1000 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script> -->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+
+<body>
+    <!-- <script src="index3.js"></script> -->
+    <div id='myDiv'>
+        <!-- Plotly chart will be drawn inside this DIV -->
+    </div>
+    <button onclick="allButton()">All</button>
+    <button onclick="noneButton()">None</button>
+
+    <script>
+        var date = [];
+        var colours = ['orange', 'green', 'skyblue', 'purple', 'yellow'];
+        var hours = [];
+        var text = [];
+        var data = [];
+        var property;
+        var layout = {
+
+            // showlegend: true,
+            // legend: { "orientation": "h" },
+            autosize: true,
+            font: {size: 18},
+            height: 600,
+            xaxis: {
+                autorange: true,
+                range: ['2019-08-01', '2021-04-01'],
+                rangeselector: {
+                    // y : 5,
+                    buttons: [
+                        {
+                            count: 1,
+                            label: '1m',
+                            step: 'month',
+                            stepmode: 'backward'
+                        },
+                        {
+                            count: 6,
+                            label: '6m',
+                            step: 'month',
+                            stepmode: 'backward'
+                        },
+                        { step: 'all' }
+                    ]
+                },
+                rangeslider: { range: ['2019-08-01', '2021-04-01'] },
+                type: 'date'
+            },
+            yaxis: {
+                autorange: true,
+                automargin: true,
+                // range: [86.8700008333, 138.870004167],
+                range: [1, 2],
+
+                type: 'linear'
+            }
+        };
+        var config = {responsive: true}
+        function allButton() {
+            for (let a = 0; a < data.length; a++) {
+                data[a]['visible'] = true;
+                console.log(data);
+                Plotly.newPlot('myDiv', data, layout);
+
+            }
+        }
+
+        function noneButton() {
+            for (let a = 0; a < data.length; a++) {
+                data[a]['visible'] = 'legendonly';
+                console.log(data);
+                Plotly.newPlot('myDiv', data, layout);
+
+            }
+        }
+
+        var mainData = [
+            {
+                "dna": [
+                    {
+                        "articleID": "284492201",
+                        "date": "Tue, 03 Sep 2019 00:30:00 GMT",
+                        "headline": "Growing adoption of digital payments is driving financial inclusion in India",
+                        "image": "http://static.dnaindia.com/sites/default/files/styles/third/public/2019/09/03/864848-digital-payments-istock.jpg",
+                        "url": "http://www.dnaindia.com/personal-finance/report-growing-adoption-of-digital-payments-is-driving-financial-inclusion-in-india-2787023",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "302344212",
+                        "date": "Wed, 23 Dec 2020 12:00:00 GMT",
+                        "headline": "Beware! RBI cautions public about unauthorised digital lending apps",
+                        "image": "http://static.dnaindia.com/sites/default/files/styles/third/public/2020/12/23/945165-rbi.jpg",
+                        "url": "http://www.dnaindia.com/personal-finance/news-rbi-cautions-public-about-unauthorised-digital-lending-apps-2863617",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "305059521",
+                        "date": "Fri, 01 Jan 2021 02:26:36 GMT",
+                        "headline": "Big financial changes set to kick in from January 1; Know here",
+                        "image": "http://static.dnaindia.com/sites/default/files/styles/third/public/2021/01/01/946996-rbi-changes-1.jpg",
+                        "url": "http://www.dnaindia.com/business/report-big-financial-changes-set-to-kick-in-from-january-1-know-here-rbi-new-year-2865384",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "284884996",
+                        "date": "Thu, 12 Sep 2019 01:00:00 GMT",
+                        "headline": "DNA ROUNDTABLE: Beating slowdown blues",
+                        "image": "http://static.dnaindia.com/sites/default/files/styles/third/public/2019/09/12/867147-manufacturing-sector-050918.jpg",
+                        "url": "http://www.dnaindia.com/business/report-dna-roundtable-beating-slowdown-blues-2789113",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "285953233",
+                        "date": "Mon, 07 Oct 2019 01:25:00 GMT",
+                        "headline": "Paper gold shines the best",
+                        "image": "http://static.dnaindia.com/sites/default/files/styles/third/public/2019/10/07/874016-gold-istock-100719.jpg",
+                        "url": "http://www.dnaindia.com/personal-finance/report-paper-gold-shines-the-best-2795212",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "286872210",
+                        "date": "Thu, 21 Nov 2019 08:09:00 GMT",
+                        "headline": "Relief for telecom firms as government defers Rs 42,000 cr spectrum payout by two years",
+                        "image": "http://static.dnaindia.com/sites/default/files/styles/third/public/2019/11/21/882043-853755-telecomsector-010418.jpg",
+                        "url": "http://www.dnaindia.com/business/report-relief-for-telecom-firms-as-government-defers-rs-42000-cr-spectrum-payout-by-two-years-2802640",
+                        "views": 0
+                    }
+                ]
+            },
+            {
+                "india_feed_en": [
+                    {
+                        "articleID": "301183252",
+                        "date": "Fri, 18 Dec 2020 06:05:00 GMT",
+                        "headline": "No Cash Payments On Toll Plazas From January 1. Here's How You Can Get Your FASTag",
+                        "image": "https://s3.india.com/wp-content/uploads/2016/11/toll-plazas.jpg",
+                        "url": "https://www.india.com/business/nhai-no-cash-on-tolls-january-1-fastag-online-easy-steps-highway-toll-rules-changing-4275012/",
+                        "views": 0
+                    }
+                ]
+            },
+            {
+                "indian_express": [
+                    {
+                        "articleID": "295425746",
+                        "date": "Thu, 26 Nov 2020 22:55:29 GMT",
+                        "headline": "Paytm, PhonePe, Amazon Pay, others now NPCI shareholders; may get more say in UPI future",
+                        "image": "https://images.indianexpress.com/2019/08/paytm-amp.jpg",
+                        "url": "https://indianexpress.com/?post_type=article&p=7069873",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "295425726",
+                        "date": "Thu, 26 Nov 2020 23:20:24 GMT",
+                        "headline": "Need tighter supervision before corporates run banks, say experts",
+                        "image": "https://images.indianexpress.com/2020/11/RBI-1.jpg",
+                        "url": "https://indianexpress.com/?post_type=article&p=7069856",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "300322185",
+                        "date": "Tue, 15 Dec 2020 08:13:45 GMT",
+                        "headline": "Facebook’s Mark Zuckerberg and RIL’s Mukesh Ambani talk WhatsApp, JioMart",
+                        "image": "https://images.indianexpress.com/2020/12/mark-zukerberg-mukesh-ambani-1200.jpeg",
+                        "url": "https://indianexpress.com/?post_type=article&p=7105669",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "300322315",
+                        "date": "Tue, 15 Dec 2020 04:37:13 GMT",
+                        "headline": "Benchmarks inch up to fresh highs; HDFC twins sparkle",
+                        "image": "https://images.indianexpress.com/2020/11/bse-bombay-stock-exchange-bloomberg-1200-1.jpg",
+                        "url": "https://indianexpress.com/?post_type=article&p=7105361",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "311634756",
+                        "date": "Thu, 21 Jan 2021 06:12:06 GMT",
+                        "headline": "Budget 2021: Attracting long term financing is critical for infrastructure sector in India",
+                        "image": "https://images.indianexpress.com/2021/01/construction-infrastructure-express-photo-1200.jpg",
+                        "url": "https://indianexpress.com/?post_type=article&p=7153176",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "309518733",
+                        "date": "Thu, 14 Jan 2021 23:15:16 GMT",
+                        "headline": "Concentration of power in India Inc: Regulator reviews seven key sectors",
+                        "image": "https://images.indianexpress.com/2021/01/Ashok-Kumar-Gupta.jpg",
+                        "url": "https://indianexpress.com/?post_type=article&p=7146858",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "308549897",
+                        "date": "Tue, 12 Jan 2021 04:37:48 GMT",
+                        "headline": "Sensex slips over 100 points in early trade; Nifty tests 14,450-levels",
+                        "image": "https://images.indianexpress.com/2020/08/bse-bombay-stock-exchange-express-photo-2-1200.jpg",
+                        "url": "https://indianexpress.com/?post_type=article&p=7142913",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "313303539",
+                        "date": "Tue, 26 Jan 2021 07:07:33 GMT",
+                        "headline": "Budget 2021: Creating a vibrant financing ecosystem through impact funds",
+                        "image": "https://images.indianexpress.com/2021/01/impact-funds-pixabay-1200.jpg",
+                        "url": "https://indianexpress.com/?post_type=article&p=7162083",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "312877146",
+                        "date": "Mon, 25 Jan 2021 04:43:39 GMT",
+                        "headline": "Sensex zooms over 340 points in early trade; financial stocks lead rally",
+                        "image": "https://images.indianexpress.com/2020/08/sensex-bse-bombay-stock-exchange-bloomberg-1200.jpg",
+                        "url": "https://indianexpress.com/?post_type=article&p=7160507",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "312809070",
+                        "date": "Sun, 24 Jan 2021 23:48:11 GMT",
+                        "headline": "Rashesh Shah Interview: ‘Govt spending actually helps middle & lower class, so fiscal stimulus is more important’",
+                        "image": "https://images.indianexpress.com/2019/01/rashesh-shah.jpg",
+                        "url": "https://indianexpress.com/?post_type=article&p=7160347",
+                        "views": 0
+                    }
+                ]
+            },
+            {
+                "toi": [
+                    {
+                        "articleID": "317674266",
+                        "date": "Mon, 08 Feb 2021 17:50:45 GMT",
+                        "headline": "'Service complaints by bank customers rise 57%'",
+                        "image": "https://static.toiimg.com/thumb/msid-80755339,width-1070,height-580,imgsize-100379,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/service-complaints-by-bank-customers-rise-57-to-over-3-lakh-rbi-report/articleshow/80755344.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "300539633",
+                        "date": "Tue, 15 Dec 2020 22:30:00 GMT",
+                        "headline": "WhatsApp in talks with banks to scale up payments",
+                        "image": "https://static.toiimg.com/thumb/msid-79754524,width-1070,height-580,imgsize-132281,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/whatsapp-in-talks-with-banks-to-scale-up-payments/articleshow/79749111.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "304665832",
+                        "date": "Wed, 30 Dec 2020 14:20:51 GMT",
+                        "headline": "Rescue acts dominate RBI's platter in 2020",
+                        "image": "https://static.toiimg.com/thumb/msid-80030058,width-1070,height-580,imgsize-1110323,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/rescue-acts-growth-measures-dominate-rbis-platter-in-2020-new-inflation-target-awaited-in-new-year/articleshow/80029997.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "302757744",
+                        "date": "Thu, 24 Dec 2020 09:12:06 GMT",
+                        "headline": "Here are the top biz stories that shaped 2020",
+                        "image": "https://static.toiimg.com/thumb/msid-79939204,width-1070,height-580,imgsize-1340451,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/here-are-the-top-business-stories-that-shaped-2020/articleshow/79937797.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "303763204",
+                        "date": "Mon, 28 Dec 2020 02:31:38 GMT",
+                        "headline": "Will home loans, health cover get more affordable?",
+                        "image": "https://static.toiimg.com/thumb/msid-79984721,width-1070,height-580,imgsize-1166027,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/will-home-loans-get-cheaper-health-cover-more-affordable/articleshow/79984630.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "298135798",
+                        "date": "Sun, 06 Dec 2020 22:30:00 GMT",
+                        "headline": "Easier norms for contactless use may boost cards",
+                        "image": "https://static.toiimg.com/thumb/msid-79600251,width-1070,height-580,imgsize-143697,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/easier-norms-for-contactless-use-may-boost-cards/articleshow/79597438.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "293953427",
+                        "date": "Fri, 20 Nov 2020 22:30:00 GMT",
+                        "headline": "Tatas, Aditya Birla look to reopen banking account",
+                        "image": "https://static.toiimg.com/thumb/msid-79333708,width-1070,height-580,imgsize-110327,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/tatas-aditya-birla-look-to-reopen-banking-account/articleshow/79332020.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "303086342",
+                        "date": "Fri, 25 Dec 2020 09:40:37 GMT",
+                        "headline": "Mfg cos log 'softer contraction' in Q2 FY21: RBI",
+                        "image": "https://static.toiimg.com/thumb/msid-79953944,width-1070,height-580,imgsize-1287163,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/manufacturing-firms-log-softer-contraction-in-sales-at-4-3-in-q2-fy21-rbi-data/articleshow/79953881.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "297601921",
+                        "date": "Fri, 04 Dec 2020 11:05:58 GMT",
+                        "headline": "Allowing corps to start banks not RBI's view: Das",
+                        "image": "https://static.toiimg.com/thumb/msid-79565736,width-1070,height-580,imgsize-1115767,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/allowing-corporates-to-start-banks-shaktikanta-das-says-it-is-internal-panels-suggestion-not-rbi-view/articleshow/79565724.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "311047478",
+                        "date": "Tue, 19 Jan 2021 17:54:56 GMT",
+                        "headline": "Aditya Puri backs corporates in banking",
+                        "image": "https://static.toiimg.com/thumb/msid-80352673,width-1070,height-580,imgsize-61679,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/aditya-puri-backs-corporates-in-banking-says-no-harm-in-trying-it/articleshow/80352692.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "311047476",
+                        "date": "Tue, 19 Jan 2021 15:13:16 GMT",
+                        "headline": "SBI, ICICI Bank, HDFC Bank remain important: RBI",
+                        "image": "https://static.toiimg.com/thumb/msid-80350828,width-1070,height-580,imgsize-116638,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/sbi-icici-bank-hdfc-bank-remain-systemically-important-banks-rbi/articleshow/80350838.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "301656939",
+                        "date": "Sun, 20 Dec 2020 09:47:47 GMT",
+                        "headline": "Indian companies mop up close to Rs 10 lakh cr in 2020",
+                        "image": "https://static.toiimg.com/thumb/msid-79824141,width-1070,height-580,imgsize-160972,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/flush-with-funds-in-covid-times-indian-companies-mop-up-close-to-rs-10-lakh-cr-in-2020/articleshow/79824144.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "321056792",
+                        "date": "Thu, 18 Feb 2021 22:30:00 GMT",
+                        "headline": "RBI tightens norms for e-payments",
+                        "image": "https://static.toiimg.com/thumb/msid-81102799,width-1070,height-580,imgsize-118318,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/rbi-tightens-norms-for-e-payments/articleshow/81098600.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "300150205",
+                        "date": "Tue, 15 Dec 2020 00:52:47 GMT",
+                        "headline": "CJI says his advocate son represents SP group arm",
+                        "image": "https://static.toiimg.com/thumb/msid-79732115,width-1070,height-580,imgsize-1794065,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/cji-says-his-advocate-son-represents-sp-group-arm/articleshow/79731388.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "298633592",
+                        "date": "Tue, 08 Dec 2020 14:56:02 GMT",
+                        "headline": "'Blanket interest waiver on loans to be Rs 6L cr'",
+                        "image": "https://static.toiimg.com/thumb/msid-79628535,width-1070,height-580,imgsize-154625,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/blanket-interest-waiver-on-all-loans-to-be-rs-6-lakh-crore-centre-to-sc/articleshow/79628567.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "311877707",
+                        "date": "Fri, 22 Jan 2021 00:17:06 GMT",
+                        "headline": "Stock & awe: Mcap at $5 trillion in ’23?",
+                        "image": "https://static.toiimg.com/thumb/msid-80397061,width-1070,height-580,imgsize-376911,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/stock-awe-mcap-at-5-trillion-in-23/articleshow/80397058.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "308643851",
+                        "date": "Tue, 12 Jan 2021 12:07:09 GMT",
+                        "headline": "11 Indian cos in top-500 globally by value: Report",
+                        "image": "https://static.toiimg.com/thumb/msid-80233517,width-1070,height-580,imgsize-34834,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/11-indian-companies-in-top-500-globally-by-value-country-ranked-10th-report/articleshow/80233131.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "300299463",
+                        "date": "Tue, 15 Dec 2020 10:50:37 GMT",
+                        "headline": "Sensex, Nifty inch up to fresh closing highs",
+                        "image": "https://static.toiimg.com/thumb/msid-79739451,width-1070,height-580,imgsize-1100596,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/sensex-nifty-inch-up-to-fresh-closing-highs-hdfc-twins-sparkle/articleshow/79739449.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "318104922",
+                        "date": "Tue, 09 Feb 2021 22:30:00 GMT",
+                        "headline": "HDFC Bank beats SBI in Covid scheme loans",
+                        "image": "https://static.toiimg.com/thumb/msid-80780167,width-1070,height-580,imgsize-71543,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/hdfc-bank-beats-sbi-in-covid-scheme-loans/articleshow/80775930.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "311998054",
+                        "date": "Fri, 22 Jan 2021 05:41:00 GMT",
+                        "headline": "How Rs 10k investment in these stocks grew over decades",
+                        "image": "https://static.toiimg.com/thumb/msid-80400179,width-1070,height-580,imgsize-68458,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/how-a-rs-10000-investment-in-these-stocks-grew-over-the-decades/articleshow/80400114.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "308837314",
+                        "date": "Tue, 12 Jan 2021 22:30:00 GMT",
+                        "headline": "Payment gateways still charge for UPI, RuPay",
+                        "image": "https://static.toiimg.com/thumb/msid-80243142,width-1070,height-580,imgsize-131362,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/payment-gateways-still-charge-for-upi-rupay/articleshow/80241228.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "312282446",
+                        "date": "Sat, 23 Jan 2021 03:25:56 GMT",
+                        "headline": "RIL doubles down on 5G pledge after record profit",
+                        "image": "https://static.toiimg.com/thumb/msid-80417016,width-1070,height-580,imgsize-107206,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/reliance-doubles-down-on-5g-pledge-after-record-profit/articleshow/80417018.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "302409592",
+                        "date": "Wed, 23 Dec 2020 12:34:34 GMT",
+                        "headline": "RBI guv asks banks to strengthen lending capacity",
+                        "image": "https://static.toiimg.com/thumb/msid-79924946,width-1070,height-580,imgsize-1113340,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/rbi-governor-asks-banks-to-strengthen-lending-capacity-by-raising-capital/articleshow/79924964.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "300891666",
+                        "date": "Thu, 17 Dec 2020 11:31:08 GMT",
+                        "headline": "'Toll naka mukt Bharat' in next two years: Gadkari",
+                        "image": "https://static.toiimg.com/thumb/msid-79779064,width-1070,height-580,imgsize-176193,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/toll-naka-mukt-bharat-in-next-two-years-nitin-gadkari/articleshow/79779046.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "300891654",
+                        "date": "Thu, 17 Dec 2020 11:47:20 GMT",
+                        "headline": "'Retail NPAs to be higher in H2 FY21'",
+                        "image": "https://static.toiimg.com/thumb/msid-79779349,width-1070,height-580,imgsize-150814,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/retail-npas-to-be-higher-in-h2fy21-to-return-to-pre-covid-levels-in-fy22/articleshow/79779356.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "306615590",
+                        "date": "Wed, 06 Jan 2021 13:59:47 GMT",
+                        "headline": "Bidding for spectrum auction to start from March 1: DoT notice",
+                        "image": "https://static.toiimg.com/thumb/msid-80136923,width-1070,height-580,imgsize-2248219,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/bidding-for-spectrum-auction-to-start-from-march-1-dot-notice/articleshow/80136288.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "306615606",
+                        "date": "Wed, 06 Jan 2021 02:00:26 GMT",
+                        "headline": "RBI’s Rs 350cr subsidy to add 10L card machines",
+                        "image": "https://static.toiimg.com/thumb/msid-80126627,width-1070,height-580,imgsize-97192,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/rbis-350cr-subsidy-to-add-10l-card-machines/articleshow/80125796.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "304105410",
+                        "date": "Mon, 28 Dec 2020 22:30:00 GMT",
+                        "headline": "Tata Trusts can enjoy tax exemption: ITAT",
+                        "image": "https://static.toiimg.com/thumb/msid-80002170,width-1070,height-580,imgsize-173731,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/tata-trusts-can-enjoy-tax-exemption-itat/articleshow/80000515.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "301656933",
+                        "date": "Mon, 21 Dec 2020 01:47:00 GMT",
+                        "headline": "AirAsia to own only 13% in Tata JV",
+                        "image": "https://static.toiimg.com/thumb/msid-79831616,width-1070,height-580,imgsize-137218,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/airasia-to-own-only-13-in-tata-jv/articleshow/79831613.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "303230005",
+                        "date": "Sat, 26 Dec 2020 01:06:44 GMT",
+                        "headline": "Bad debt fear keeps pvt banks away from street vendor loans",
+                        "image": "https://static.toiimg.com/thumb/msid-79963616,width-1070,height-580,imgsize-1204637,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/bad-debt-fear-keeps-private-banks-away-from-street-vendor-loans/articleshow/79961345.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "303142291",
+                        "date": "Fri, 25 Dec 2020 14:16:54 GMT",
+                        "headline": "Top 10 richest people in India in 2020",
+                        "image": "https://static.toiimg.com/thumb/msid-79956441,width-1070,height-580,imgsize-1979173,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/top-10-richest-people-in-india-in-2020-all-you-need-to-know/articleshow/79955986.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "303086340",
+                        "date": "Fri, 25 Dec 2020 11:32:25 GMT",
+                        "headline": "2020: A glimpse of life without trains for 1st time in 167 years",
+                        "image": "https://static.toiimg.com/thumb/msid-79954964,width-1070,height-580,imgsize-1597618,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/2020-a-glimpse-of-life-without-trains-as-railways-battled-odds-to-keep-indias-lifeline-running/articleshow/79954988.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "302606747",
+                        "date": "Wed, 23 Dec 2020 22:30:00 GMT",
+                        "headline": "Infy rallies on $3bn deal, mcap crosses $70bn",
+                        "image": "https://static.toiimg.com/thumb/msid-79933699,width-1070,height-580,imgsize-120731,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/infy-rallies-on-3bn-daimler-deal-mcap-crosses-70bn/articleshow/79931403.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "310057660",
+                        "date": "Sat, 16 Jan 2021 10:59:21 GMT",
+                        "headline": "'RBI likely to propose stricter rules for shadow banks'",
+                        "image": "https://static.toiimg.com/thumb/msid-80302136,width-1070,height-580,imgsize-118318,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/rbi-likely-to-propose-stricter-rules-for-shadow-banks-report/articleshow/80302077.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "301828539",
+                        "date": "Mon, 21 Dec 2020 13:05:59 GMT",
+                        "headline": "At $8.1bn, FPI inflows highest in 12 yrs: Report",
+                        "image": "https://static.toiimg.com/thumb/msid-79841711,width-1070,height-580,imgsize-1222711,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/at-8-1-billion-in-november-fpi-inflows-highest-in-12-years-report/articleshow/79841721.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "301828537",
+                        "date": "Mon, 21 Dec 2020 16:54:04 GMT",
+                        "headline": "HDFC, ICICI Bank, SBI, among top-10 lenders in 2020",
+                        "image": "https://static.toiimg.com/thumb/msid-79844146,width-1070,height-580,imgsize-154625,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/hdfc-icici-bank-sbi-among-top-10-lenders-in-2020-google-pay-phonepe-top-wallets-report/articleshow/79844080.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "317880926",
+                        "date": "Tue, 09 Feb 2021 10:49:37 GMT",
+                        "headline": "Govt to soon bring bill on crypto currencies",
+                        "image": "https://static.toiimg.com/thumb/msid-80767704,width-1070,height-580,imgsize-50849,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/government-to-soon-bring-bill-on-crypto-currencies/articleshow/80767717.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "314543054",
+                        "date": "Sat, 30 Jan 2021 06:04:46 GMT",
+                        "headline": "Tax benefits, other incentives for startups",
+                        "image": "https://static.toiimg.com/thumb/msid-80598065,width-1070,height-580,imgsize-26916,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/guidebook-for-startups-how-innovative-ideas-can-be-transformed-into-an-opportunity/articleshow/80597757.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "314543048",
+                        "date": "Sat, 30 Jan 2021 10:57:45 GMT",
+                        "headline": "ICICI Bank's Q3 profit rises 17% to Rs 5,498 cr",
+                        "image": "https://static.toiimg.com/thumb/msid-80601607,width-1070,height-580,imgsize-1052541,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/icici-banks-q3-net-profit-increases-17-to-rs-5498-crore/articleshow/80601609.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "322935449",
+                        "date": "Thu, 25 Feb 2021 06:40:20 GMT",
+                        "headline": "India at cusp of turnaround in fortunes: RBI guv",
+                        "image": "https://static.toiimg.com/thumb/msid-81205140,width-1070,height-580,imgsize-124863,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/india-at-cusp-of-turnaround-in-fortunes-says-rbi-governor-key-points/articleshow/81205152.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "298833932",
+                        "date": "Wed, 09 Dec 2020 06:48:08 GMT",
+                        "headline": "Gates calls India’s digital fin push a global model",
+                        "image": "https://static.toiimg.com/thumb/msid-79639161,width-1070,height-580,imgsize-167988,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/bill-gates-calls-indias-digital-finance-approach-a-global-model/articleshow/79639175.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "298833940",
+                        "date": "Tue, 08 Dec 2020 20:24:02 GMT",
+                        "headline": "Interest waiver for all would ruin banks: Govt",
+                        "image": "https://static.toiimg.com/thumb/msid-79633824,width-1070,height-580,imgsize-1197849,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/interest-waiver-for-all-can-lead-to-rs-6-lakh-crore-loss-centre-tells-supreme-court/articleshow/79633828.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "294362393",
+                        "date": "Mon, 23 Nov 2020 16:38:13 GMT",
+                        "headline": "Foreign law cos can't open branch in India: RBI",
+                        "image": "https://static.toiimg.com/thumb/msid-79374482,width-1070,height-580,imgsize-1116638,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/rbi-asks-banks-not-to-approve-proposals-of-foreign-law-firms-to-open-branch-office-in-india/articleshow/79374499.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "298960869",
+                        "date": "Wed, 09 Dec 2020 08:33:17 GMT",
+                        "headline": "Sensex settles above 46,000-mark for first time ever; Nifty tops 13,500",
+                        "image": "https://static.toiimg.com/thumb/msid-79640935,width-1070,height-580,imgsize-146472,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/sensex-zooms-over-400-points-to-hit-46000-mark-for-first-time-ever-nifty-tops-13500/articleshow/79640161.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "299223991",
+                        "date": "Thu, 10 Dec 2020 22:30:00 GMT",
+                        "headline": "IT back-up fix may take up to 3 months: HDFC Bank",
+                        "image": "https://static.toiimg.com/thumb/msid-79672932,width-1070,height-580,imgsize-171543,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/it-back-up-fix-could-take-up-to-3-months-hdfc-bank/articleshow/79671291.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "317080986",
+                        "date": "Sat, 06 Feb 2021 23:10:19 GMT",
+                        "headline": "Huge no. of Maharashtra, Gujarat trawlers docked as China fish exports hit",
+                        "image": "https://static.toiimg.com/thumb/msid-80729425,width-1070,height-580,imgsize-103104,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/huge-no-of-maharashtra-gujarat-trawlers-docked-as-china-fish-exports-hit/articleshow/80729407.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "308989842",
+                        "date": "Wed, 13 Jan 2021 13:09:54 GMT",
+                        "headline": "'GDP may clip at 6% if vaccine distribution delayed'",
+                        "image": "https://static.toiimg.com/thumb/msid-80252844,width-1070,height-580,imgsize-183577,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/gdp-may-clip-at-just-6-in-fy22-if-vaccine-distribution-is-delayed/articleshow/80252866.cms",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "318292055",
+                        "date": "Wed, 10 Feb 2021 08:55:54 GMT",
+                        "headline": "Petrol, diesel prices at fresh highs as rates surge",
+                        "image": "https://static.toiimg.com/thumb/msid-80784853,width-1070,height-580,imgsize-1270268,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg",
+                        "url": "https://timesofindia.indiatimes.com/business/india-business/petrol-diesel-prices-at-fresh-highs-as-rates-surge-for-second-straight-day/articleshow/80784861.cms",
+                        "views": 0
+                    }
+                ]
+            },
+            {
+                "zee_news": [
+                    {
+                        "articleID": "315625603",
+                        "date": "Wed, 03 Feb 2021 04:56:25 GMT",
+                        "headline": "Sensex, Nifty pare early losses to turn positive in opening trade",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/02/03/914360-sensexreuters.jpg",
+                        "url": "http://zeenews.india.com/markets/sensex-nifty-pare-early-losses-to-turn-positive-in-opening-trade-2339420.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "303835429",
+                        "date": "Mon, 28 Dec 2020 11:02:22 GMT",
+                        "headline": "Stock markets scale new heights on positive global cues",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/28/907853-sensex.jpg",
+                        "url": "http://zeenews.india.com/markets/stock-markets-scale-new-heights-on-positive-global-cues-2333361.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "301148525",
+                        "date": "Fri, 18 Dec 2020 09:15:32 GMT",
+                        "headline": "Now, buy insurance and pension products on WhatsApp: All details here",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/18/906164-whatsappreuter.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/now-buy-insurance-and-pension-products-on-whatsapp-all-details-here-2331693.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "299270861",
+                        "date": "Fri, 11 Dec 2020 12:56:14 GMT",
+                        "headline": "Cheque payments rule changing from January 1: Here's all about the new rule",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/11/904733-chequebookp.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/cheque-payments-rule-changing-from-january-1-heres-all-about-the-new-rule-2330249.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "316497135",
+                        "date": "Fri, 05 Feb 2021 10:46:33 GMT",
+                        "headline": "Market rally continues; Sensex, Nifty end at fresh record high on RBI policy outcome",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/02/05/914907-sensexgeneral.jpg",
+                        "url": "http://zeenews.india.com/markets/market-rally-continues-sensex-nifty-end-at-fresh-record-high-on-rbi-policy-outcome-2339912.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "315099408",
+                        "date": "Mon, 01 Feb 2021 07:32:28 GMT",
+                        "headline": "Union Budget 2021: Major disappointment for individual taxpayers! No change in tax slab",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/02/01/913969-tax-ians.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/union-budget-2021-major-disappointment-for-individual-taxpayers-no-change-in-tax-slab-2339056.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "304209523",
+                        "date": "Tue, 29 Dec 2020 11:33:51 GMT",
+                        "headline": "Markets on a roll: Sensex, Nifty scale new peaks, log gains for 5th day",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/29/908017-sensexgeneral.jpg",
+                        "url": "http://zeenews.india.com/markets/markets-on-a-roll-sensex-nifty-scale-new-peaks-log-gains-for-5th-day-2333512.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "304550369",
+                        "date": "Wed, 30 Dec 2020 07:03:35 GMT",
+                        "headline": "SBI introducing Positive Pay System from January 1: Know what it is and how it make Cheque payment secure",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/30/908143-sbireuters.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/sbi-introducing-positive-pay-system-from-january-1-know-what-it-is-and-how-it-make-cheque-payment-secure-2333609.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "311932016",
+                        "date": "Fri, 22 Jan 2021 04:29:53 GMT",
+                        "headline": "Sensex, Nifty open lower in line with other Asian bourses",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/01/22/912032-sensex2reiters.jpg",
+                        "url": "http://zeenews.india.com/markets/sensex-nifty-open-lower-in-line-with-other-asian-bourses-2337176.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "305155975",
+                        "date": "Fri, 01 Jan 2021 12:56:12 GMT",
+                        "headline": "Positive pay system for cheque kick in from January 1: Know what it is and what the benefits are",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/01/01/908495-cheque-pixabay.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/positive-pay-system-for-cheque-kick-in-from-january-1-know-what-it-is-and-what-are-the-benefits-2333902.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "311538251",
+                        "date": "Thu, 21 Jan 2021 06:07:21 GMT",
+                        "headline": "Joe Biden's swearing in cheers Dalal Street; Sensex breaches 50,000-mark",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/01/21/911829-sensexreuters1.jpg",
+                        "url": "http://zeenews.india.com/markets/joe-bidens-swearing-in-cheers-dalal-street-sensex-breaches-50000-mark-2337017.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "300224892",
+                        "date": "Tue, 15 Dec 2020 11:23:43 GMT",
+                        "headline": "Markets finish at all-time highs; HDFC twins sparkle",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/15/905513-sensexreuters1.jpg",
+                        "url": "http://zeenews.india.com/markets/markets-finish-at-all-time-highs-hdfc-twins-sparkle-2330994.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "300792999",
+                        "date": "Thu, 17 Dec 2020 09:07:12 GMT",
+                        "headline": "From cheque and UPI payment to GST, these 10 rules are changing from January 1: Details here",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/17/905956-changerules-pixabay.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/from-cheque-and-upi-payment-to-gst-these-10-rules-are-changing-from-january-1-details-here-2331430.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "304930446",
+                        "date": "Thu, 31 Dec 2020 12:34:11 GMT",
+                        "headline": "Key financial changes to commence from January 1: Check new rules",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/31/908318-incometaxdeadline-pixabay.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/key-financial-changes-to-commence-from-january-1-check-new-rules-2333753.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "304754681",
+                        "date": "Thu, 31 Dec 2020 04:23:11 GMT",
+                        "headline": "Are you aware of these 10 rules changing from January 1st 2021? Check them quickly",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/31/908253-calander-pixabay.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/are-you-aware-of-these-10-rules-changing-from-january-1st-2021-check-them-quickly-2333697.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "304550417",
+                        "date": "Wed, 30 Dec 2020 11:47:12 GMT",
+                        "headline": "Zee Readers poll 2020: Was loan moratorium the biggest news for EMI payers? Post your views on it",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/30/908185-funds1-pixabay.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/zee-readers-poll-2020-was-loan-moratorium-the-biggest-news-for-emi-payers-post-your-views-on-it-2333643.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "304007032",
+                        "date": "Tue, 29 Dec 2020 04:31:37 GMT",
+                        "headline": "Sensex, Nifty continue record run in opening session; IndusInd Bank, HCL Tech, Kotak Bank, Axis Bank, HDFC Bank top gainers",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/29/907937-sensex-1.gif",
+                        "url": "http://zeenews.india.com/markets/sensex-nifty-continue-record-run-in-opening-session-indusind-bank-hcl-tech-kotak-bank-axis-bank-hdfc-bank-top-gainers-2333443.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "303835367",
+                        "date": "Mon, 28 Dec 2020 05:11:37 GMT",
+                        "headline": "10 rules to be changing from January 1st 2021",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/28/907773-changes-january1.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/10-rules-to-be-changing-from-january-1st-2021-2333293.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "303564737",
+                        "date": "Sun, 27 Dec 2020 06:28:21 GMT",
+                        "headline": "WhatsApp rolled out five useful features in 2020, are you using them?",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/27/907654-whatapp.jpg",
+                        "url": "http://zeenews.india.com/technology/whatsapp-rolled-out-five-useful-features-in-2020-are-you-using-them-2333183.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "309565139",
+                        "date": "Fri, 15 Jan 2021 04:32:51 GMT",
+                        "headline": "Sensex drops over 200 points in early trade; Nifty below 14,550",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/01/15/910705-sensex2reiters.jpg",
+                        "url": "http://zeenews.india.com/markets/sensex-drops-over-200-points-in-early-trade-nifty-below-14550-2335958.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "305897975",
+                        "date": "Mon, 04 Jan 2021 04:27:02 GMT",
+                        "headline": "Markets hit fresh record highs on first trading week of New Year",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/01/04/908783-sensexreuters.jpg",
+                        "url": "http://zeenews.india.com/markets/markets-hit-fresh-record-highs-on-first-trading-week-of-new-year-2334167.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "302330425",
+                        "date": "Wed, 23 Dec 2020 05:12:21 GMT",
+                        "headline": "10 rules impacting your everyday life changing from January 1 2021",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/23/906962-change-pixaaby.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/10-rules-impacting-your-everyday-life-changing-from-january-1-2021-2332465.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "310845515",
+                        "date": "Tue, 19 Jan 2021 05:15:17 GMT",
+                        "headline": "Sensex rallies nearly 500 points in early trade; Nifty tops 14,400",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/01/19/911408-sensex2reiters.jpg",
+                        "url": "http://zeenews.india.com/markets/sensex-rallies-nearly-500-points-in-early-trade-nifty-tops-14400-2336617.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "313787168",
+                        "date": "Thu, 28 Jan 2021 05:50:00 GMT",
+                        "headline": "Sensex tumbles over 500 points in opening trade; Nifty below 13,800",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/01/28/913194-sensex-loser.jpg",
+                        "url": "http://zeenews.india.com/markets/sensex-tumbles-over-500-points-in-opening-trade-nifty-below-13800-2338252.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "315099424",
+                        "date": "Mon, 01 Feb 2021 08:39:49 GMT",
+                        "headline": "Sensex rallies nearly 1000 points as Finance Minister Nirmala Sitharaman presents budget",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/02/01/913987-untitled-design-160.jpg",
+                        "url": "http://zeenews.india.com/economy/sensex-rallies-nearly-1000-points-as-finance-minister-nirmala-sitharaman-presents-budget-2339087.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "283919827",
+                        "date": "Thu, 26 Dec 2019 09:34:08 GMT",
+                        "headline": "Airtel Payments Bank customers to enjoy 24x7 NEFT facility",
+                        "image": "http://english.cdn.zeenews.com/sites/default/files/styles/zm_350x200/public/2019/12/26/837097-airtelpaymentbankzee.jpg",
+                        "url": "http://zeenews.india.com/companies/airtel-payments-bank-customers-to-enjoy-24x7-neft-facility-2254527.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "295489477",
+                        "date": "Fri, 27 Nov 2020 11:58:57 GMT",
+                        "headline": "EMI Moratorium: SC directs govt to implement its decision to forego interest on eight categories of loans",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/11/27/901749-supremecourt.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/emi-moratorium-sc-directs-govt-to-implement-its-decision-to-forego-interest-on-eight-categories-of-loans-2327075.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "316038605",
+                        "date": "Thu, 04 Feb 2021 04:36:07 GMT",
+                        "headline": "Sensex drops over 140 points in early trade",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/02/04/914588-sensexgeneral.jpg",
+                        "url": "http://zeenews.india.com/markets/sensex-drops-over-140-points-in-early-trade-2339614.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "316309460",
+                        "date": "Fri, 05 Feb 2021 04:14:59 GMT",
+                        "headline": "Nifty hits 15,000-mark for 1st time ever, Sensex jumps over 330 points ahead of RBI policy",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/02/05/914795-sensex-reutters.jpg",
+                        "url": "http://zeenews.india.com/markets/nifty-hits-15000-mark-for-1st-time-ever-sensex-jumps-over-330-points-ahead-of-rbi-policy-2339800.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "313787228",
+                        "date": "Thu, 28 Jan 2021 10:41:01 GMT",
+                        "headline": "Market tumbles for 5th straight session; Sensex tanks 536 points",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/01/28/913241-sensex2reiters.jpg",
+                        "url": "http://zeenews.india.com/markets/market-tumbles-for-5th-straight-session-sensex-tanks-536-points-2338294.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "290565007",
+                        "date": "Fri, 06 Nov 2020 01:58:14 GMT",
+                        "headline": "Beware of banking frauds this festive season, know how you can stay safe",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/11/06/897600-cyber-bullying.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/beware-of-banking-frauds-this-festive-season-know-how-you-can-stay-safe-2322803.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "298733561",
+                        "date": "Wed, 09 Dec 2020 04:05:20 GMT",
+                        "headline": "Market at fresh record highs; Sensex zooms past 45,880, Nifty at 13,471",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/12/09/904173-sensexreuters1.jpg",
+                        "url": "http://zeenews.india.com/markets/market-at-fresh-record-highs-sensex-zooms-past-45880-nifty-at-13471-2329725.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "290277359",
+                        "date": "Wed, 04 Nov 2020 12:28:45 GMT",
+                        "headline": "Good news for Bank of Baroda customers! Bank withdraws charges on deposits, withdrawals",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2020/11/04/897315-baroda.jpg",
+                        "url": "http://zeenews.india.com/personal-finance/good-news-for-bank-of-baroda-customers-bank-withdraws-charges-on-deposits-withdrawals-2322475.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "309176822",
+                        "date": "Thu, 14 Jan 2021 05:11:50 GMT",
+                        "headline": "Sensex drops over 150 pts in early trade; Nifty tests 14,500",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/01/14/910463-sensex-reuters.jpg",
+                        "url": "http://zeenews.india.com/markets/sensex-drops-over-150-pts-in-early-trade-nifty-tests-14500-2335759.html",
+                        "views": 0
+                    },
+                    {
+                        "articleID": "308793927",
+                        "date": "Wed, 13 Jan 2021 04:38:11 GMT",
+                        "headline": "Sensex jumps over 200 points to new high; Nifty tops 14,600",
+                        "image": "https://english.cdn.zeenews.com/sites/default/files/2021/01/13/910207-sensexreuters1.jpg",
+                        "url": "http://zeenews.india.com/markets/sensex-jumps-over-200-points-to-new-high-nifty-tops-14600-2335533.html",
+                        "views": 0
+                    }
+                ]
+            }
+        ];
+
+        // function getRandomColor() {
+        //     var letters = '0123456789ABCDEF';
+        //     var color = '#';
+        //     for (var i = 0; i < 6; i++) {
+        //         color += letters[Math.floor(Math.random() * 16)];
+        //     }
+        //     return color;
+        // }
+
+        for (let i = 0; i < mainData.length; i++) {
+            let varData = mainData[i];
+            let legendName ="";
+            console.log(varData);
+
+            for (var keyName in varData) {
+                this.property = keyName
+                console.log(this.property);
+            }
+            let splitValue = this.property.split('_');
+            console.log(splitValue)
+            for (let i = 0; i < splitValue.length; i++) {
+                legendName += splitValue[i]+" ";
+            }
+            console.log(legendName);
+
+
+            let xAxisData = [];
+            let yAxisData = [];
+            let titles = [];
+
+            for (let a = 0; a < varData[this.property].length; a++) {
+                let uploadHours = new Date(varData[this.property][a]['date']).getUTCHours();
+                let minutes = new Date(varData[this.property][a]['date']).getUTCMinutes();
+                let seconds = new Date(varData[this.property][a]['date']).getUTCSeconds();
+                let year = new Date(varData[this.property][a]['date']).getUTCFullYear();
+                let month = new Date(varData[this.property][a]['date']).getUTCMonth() + 1;
+                let day = new Date(varData[this.property][a]['date']).getUTCDate();
+
+                let uploadTime = new Date(varData[this.property][a]['date']).getUTCHours()
+
+                if (uploadHours < 10) {
+                    uploadHours = '0' + uploadHours;
+                }
+                if (minutes < 10) {
+                    minutes = '0' + minutes;
+                }
+                if (seconds < 10) {
+                    seconds = '0' + seconds;
+                }
+                if (month < 10) {
+                    month = '0' + month;
+                }
+                if (day < 10) {
+                    day = '0' + day;
+                }
+                xAxisData.push(year + '-' + month + '-' + day + ' ' + uploadHours + ':' + minutes + ':' + seconds);
+                yAxisData.push(uploadTime);
+                titles.push(varData[this.property][a]['headline'])
+                console.log(titles);
+
+
+            }
+            // console.log(xAxisData)
+            //   console.log(yAxisData)
+
+            data.push(
+                {
+                    x: xAxisData,
+                    y: yAxisData,
+                    type: 'scatter',
+                    mode: 'markers',
+                    text: titles,
+                    hoverinfo: 'text+x',
+                    // visible: 'true',
+                    name: legendName,
+                    marker: {
+                        color: 'rgba(17, 157, 255, 0)',
+                        size: 5,
+                        line: {
+                            color: colours[i],
+                            width: 5
+                        }
+                    },
+                },
+            )
+
+            console.log(this.data);
+
+        }
+        Plotly.newPlot('myDiv',data,layout,config);
+
+    </script>
+</body>
+
+</html>
